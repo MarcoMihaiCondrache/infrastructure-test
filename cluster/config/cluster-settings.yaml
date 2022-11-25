@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-settings
+  namespace: flux-system
+data:
+  TIMEZONE: Europe/Rome
+  METALLB_LB_RANGE: 192.168.0.200-192.168.0.250
+  SVC_TRAEFIK_LB_IP: 192.168.0.200
+  SVC_LONGHORN_LB_IP: 192.168.0.201
+  SVC_EMQX_LB_IP: 192.168.0.202
+  SVC_HOME_ASSISTANT_CODE_LB_IP: 192.168.0.203
+  SVC_HOME_ASSISTANT_LB_IP: 192.168.0.204
+  SVC_ZIGBEE2MQTT_LB_IP: 192.168.0.205
+  SVC_NODERED_LB_IP: 192.168.0.206
+  SVC_POSTGRES_UI_LB_IP: 192.168.0.207
+  SVC_ZIGBEE2MQTT_DEVICE: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2285014-if00
