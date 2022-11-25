@@ -1,0 +1,94 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app zigbee2mqtt
+  namespace: home
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: zigbee2mqtt
+      version: 9.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  dependsOn:
+    - name: emqx
+      namespace: home
+    - name: longhorn
+      namespace: longhorn-system
+  values:
+    image:
+      repository: koenkk/zigbee2mqtt
+      tag: latest-dev ## using dev branch to add unsupported devices
+      pullPolicy: IfNotPresent
+    envFrom:
+      - secretRef:
+          name: *app
+    securityContext:
+      privileged: true
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_ZIGBEE2MQTT_LB_IP}
+        ports:
+          http:
+            port: 8080
+          metrics:
+            enabled: true
+            port: 80
+    additionalVolumeMounts:
+      - name: usb
+        mountPath: ${SVC_ZIGBEE2MQTT_DEVICE}
+    additionalVolumes:
+      - name: usb
+        hostPath:
+          path: ${SVC_ZIGBEE2MQTT_DEVICE}
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 1Gi
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: ${SVC_ZIGBEE2MQTT_DEVICE}
+    config:
+      homeassistant: true
+      permit_join: false
+      mqtt:
+        server: "mqtt://emqx.home.svc.cluster.local"
+        include_device_information: true
+      serial:
+        port: ${SVC_ZIGBEE2MQTT_DEVICE}
+      advanced:
+        pan_id: 0x17EC
+        channel: 25 # Suggested channel
+        network_key:
+          - 22
+          - 65
+          - 1
+          - 254
+          - 32
+          - 5
+          - 78
+          - 154
+          - 90
+          - 101
+          - 201
+          - 11
+          - 0
+          - 3
+          - 191
+          - 2
+        log_output:
+          - console
+        log_level: info
+        homeassistant_discovery_topic: 'homeassistant'
+        homeassistant_status_topic: 'homeassistant/status'
+      frontend:
+        port: 8080
+      experimental:
+        new_api: true
