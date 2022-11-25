@@ -41,11 +41,11 @@ spec:
             port: 80
     additionalVolumeMounts:
       - name: usb
-        mountPath: ${SVC_ZIGBEE2MQTT_DEVICE}
+        mountPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2285014-if00
     additionalVolumes:
       - name: usb
         hostPath:
-          path: ${SVC_ZIGBEE2MQTT_DEVICE}
+          path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2285014-if00
     persistence:
       data:
         enabled: true
@@ -54,7 +54,7 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: ${SVC_ZIGBEE2MQTT_DEVICE}
+        hostPath: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2285014-if00
     config:
       homeassistant: true
       permit_join: false
@@ -62,11 +62,11 @@ spec:
         server: "mqtt://emqx.home.svc.cluster.local"
         include_device_information: true
       serial:
-        port: ${SVC_ZIGBEE2MQTT_DEVICE}
+        port: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2285014-if00
         adapter: deconz
       advanced:
         pan_id: 0x17EC
-        channel: 25 # Suggested channel
+        channel: 25
         network_key:
           - 22
           - 65
