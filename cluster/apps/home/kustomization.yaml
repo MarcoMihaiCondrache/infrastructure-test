@@ -6,5 +6,5 @@ resources:
   - emqx
   - home-assistant
   - home-assistant-code
-  - zigbee2mqtt
+  #- zigbee2mqtt
   - node-red
