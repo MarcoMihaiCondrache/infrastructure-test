@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: koenkk/zigbee2mqtt
-      tag: 1.28.2 ## using dev branch to add unsupported devices
+      tag: latest-dev ## using dev branch to add unsupported devices
       pullPolicy: IfNotPresent
     envFrom:
       - secretRef:
@@ -63,6 +63,7 @@ spec:
         include_device_information: true
       serial:
         port: ${SVC_ZIGBEE2MQTT_DEVICE}
+        adapter: deconz
       advanced:
         pan_id: 0x17EC
         channel: 25 # Suggested channel
