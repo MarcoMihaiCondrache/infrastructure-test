@@ -30,6 +30,7 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/home-assistant
+      tag: latest
     env:
       TZ: "${TIMEZONE}"
       #POSTGRES_HOST: postgres-rw.default.svc.cluster.local
