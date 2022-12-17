@@ -9,10 +9,10 @@ spec:
   chart:
     spec:
       chart: node-red
-      version: 0.21.2
+      version: 13.0.3
       sourceRef:
         kind: HelmRepository
-        name: schwarzit-charts
+        name: truecharts-charts
         namespace: flux-system
   install:
     remediation:
@@ -38,10 +38,18 @@ spec:
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
     service:
-      type: ClusterIP
-      loadBalancerIP: ${SVC_NODERED_LB_IP}
-      port: 1880
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_NODERED_LB_IP}
+        ports:
+          main:
+            port: 1880
+            targetPort: 1880
     persistence:
+      data:
+        enabled: true
+        mountPath: "/data"
+        accessMode: ReadWriteOnce
+        size: 5Gi
+    portal:
       enabled: true
-      accessMode: ReadWriteOnce
-      size: 5Gi
