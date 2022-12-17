@@ -38,14 +38,10 @@ spec:
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
     service:
-      main:
-        type: LoadBalancer
-        loadBalancerIP: ${SVC_NODERED_LB_IP}
-        ports:
-          http:
-            port: 1880
+      type: ClusterIP
+      loadBalancerIP: ${SVC_NODERED_LB_IP}
+      port: 1880
     persistence:
-      data:
-        enabled: true
-        mountPath: /data
-        existingClaim: node-red-data
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 5Gi
