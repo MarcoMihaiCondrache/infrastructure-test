@@ -52,12 +52,11 @@ spec:
       NODE_RED_ENABLE_PROJECTS: "true"
       NODE_RED_ENABLE_SAFE_MODE: "false"
     # Fix for https://github.com/zachowj/node-red-contrib-home-assistant-websocket/issues/678
-    securityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
+    podSecurityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
       fsGroupChangePolicy: "OnRootMismatch"
-      privileged: true
     persistence:
       config:
         enabled: true
