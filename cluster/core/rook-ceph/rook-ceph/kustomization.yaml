@@ -31,7 +31,7 @@ metadata:
 spec:
   dependsOn:
     - name: rook-ceph-operator
-  path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
+  path: ./cluster/core/rook-ceph/rook-ceph/cluster
   prune: true
   sourceRef:
     kind: GitRepository
