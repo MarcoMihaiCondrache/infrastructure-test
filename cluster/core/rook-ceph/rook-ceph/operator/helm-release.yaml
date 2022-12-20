@@ -27,6 +27,17 @@ spec:
     pspEnable: false
     monitoring:
       enabled: true
+    tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+    csi:
+      pluginTolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
     resources:
       requests:
         cpu: 10m
