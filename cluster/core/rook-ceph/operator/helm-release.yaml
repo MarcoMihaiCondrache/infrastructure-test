@@ -25,8 +25,6 @@ spec:
     remediation:
       retries: 3
   values:
-    crds:
-      enabled: false
     pspEnable: false
     tolerations:
       - key: "node-role.kubernetes.io/master"
