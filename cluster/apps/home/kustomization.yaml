@@ -5,6 +5,6 @@ namespace: home
 resources:
   - emqx
   - home-assistant
-  - home-assistant-code
+  #- home-assistant-code
   - zigbee2mqtt
   - node-red
