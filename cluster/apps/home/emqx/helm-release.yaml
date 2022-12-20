@@ -13,9 +13,6 @@ spec:
         kind: HelmRepository
         name: emqx-charts
         namespace: flux-system
-  dependsOn:
-    - name: longhorn
-      namespace: longhorn-system
   install:
     remediation:
       retries: 5
@@ -29,7 +26,6 @@ spec:
       loadBalancerIP: ${SVC_EMQX_LB_IP}
     persistence:
       enabled: true
-      storageClass: longhorn
       size: 100Mi
   valuesFrom:
     - targetPath: emqxConfig.EMQX_DASHBOARD__DEFAULT_USERNAME

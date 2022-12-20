@@ -18,8 +18,6 @@ spec:
   dependsOn:
     - name: emqx
       namespace: home
-    - name: longhorn
-      namespace: longhorn-system
   values:
     tolerations:
       - key: "node.kubernetes.io/unreachable"
