@@ -22,3 +22,4 @@ resources:
   - node-feature-discovery-charts.yaml
   - prometheus-community-charts.yaml
   - truecharts-charts.yaml
+  - rook-ceph-charts.yaml
