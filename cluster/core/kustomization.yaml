@@ -6,4 +6,5 @@ resources:
   - node-feature-discovery
   - cert-manager
   - networking
+  - rook-ceph
   - longhorn-system
