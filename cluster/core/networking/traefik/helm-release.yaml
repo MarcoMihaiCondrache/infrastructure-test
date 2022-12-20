@@ -16,10 +16,10 @@ spec:
   dependsOn:
     - name: metallb
       namespace: networking
-    - name: cert-manager
-      namespace: cert-manager
-    - name: cert-manager-issuers
-      namespace: cert-manager
+    #- name: cert-manager
+    #  namespace: cert-manager
+    #- name: cert-manager-issuers
+    #  namespace: cert-manager
   interval: 1m0s
   values:
     priorityClassName: "system-node-critical"
