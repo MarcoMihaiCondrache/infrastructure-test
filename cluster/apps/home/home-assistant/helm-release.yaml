@@ -68,6 +68,13 @@ spec:
         # git:
         #   deployKeySecret: code-server
         workingDir: "/config"
+        service:
+          main:
+            type: LoadBalancer
+            loadBalancerIP: ${SVC_HOME_ASSISTANT_CODE_LB_IP}
+            ports:
+              http:
+                port: 80
         args:
           - --auth
           - "none"
