@@ -32,13 +32,8 @@ spec:
         operator: "Equal"
         value: "true"
         effect: "NoSchedule"
-    discover:
-      tolerations:
-        - key: "node-role.kubernetes.io/master"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
     csi:
+      provisionerReplicas: 1
       pluginTolerations:
         - key: "node-role.kubernetes.io/master"
           operator: "Equal"
