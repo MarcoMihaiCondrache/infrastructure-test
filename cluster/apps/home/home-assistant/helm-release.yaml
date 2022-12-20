@@ -70,7 +70,7 @@ spec:
         workingDir: "/config"
         service:
           enabled: true
-          type: ClusterIP
+          type: LoadBalancer
           loadBalancerIP: ${SVC_HOME_ASSISTANT_CODE_LB_IP}
         args:
           - --auth
