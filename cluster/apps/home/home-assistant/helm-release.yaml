@@ -72,12 +72,6 @@ spec:
           enabled: true
           type: ClusterIP
           loadBalancerIP: ${SVC_HOME_ASSISTANT_CODE_LB_IP}
-          ports:
-            codeserver:
-            port: 12321
-            enabled: true
-            protocol: TCP
-            targetPort: codeserver
         args:
           - --auth
           - "none"
