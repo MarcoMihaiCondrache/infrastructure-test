@@ -1,0 +1,55 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: longhorn
+spec:
+  interval: 5m
+  releaseName: longhorn
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn-charts
+        namespace: flux-system
+      interval: 1m
+  dependsOn:
+    - name: metallb
+      namespace: networking
+    - name: traefik
+      namespace: networking
+  upgrade:
+    force: true
+    remediation:
+      retries: 3
+  values:
+    service:
+      ui:
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_LONGHORN_LB_IP}
+    # TODO: Delete `enablePDP: false` after Longhorn v1.4.0 goes out
+    enablePSP: false
+    persistence:
+      defaultClass: true
+      defaultClassReplicaCount: 2
+    defaultSettings:
+      defaultReplicaCount: 2
+      taintToleration: "node-role.kubernetes.io/master=true:NoSchedule"
+    ingress:
+      enabled: false
+    longhornManager:
+      priorityClass: system-node-critical
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+    longhornDriver:
+      priorityClass: system-node-critical
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
