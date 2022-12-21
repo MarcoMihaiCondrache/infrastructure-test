@@ -5,5 +5,5 @@ resources:
   - namespaces
   #- node-feature-discovery
   #- cert-manager
-  #- networking
+  - networking
   - longhorn-system
