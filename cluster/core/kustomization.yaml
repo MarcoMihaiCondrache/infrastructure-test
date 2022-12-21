@@ -6,4 +6,4 @@ resources:
   - node-feature-discovery
   - cert-manager
   - networking
-  - longhorn-system
+  #- longhorn-system
