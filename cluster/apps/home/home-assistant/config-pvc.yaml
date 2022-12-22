@@ -31,5 +31,5 @@ spec:
   resources:
     requests:
       storage: 5Gi
-storageClassName: longhorn # must match name from earlier
-volumeName: homeassistant # must reference Persistent Volume
+  storageClassName: longhorn # must match name from earlier
+  volumeName: homeassistant # must reference Persistent Volume
