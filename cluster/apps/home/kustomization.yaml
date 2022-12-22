@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: home
 resources:
   - emqx
-  - home-assistant
+  #- home-assistant
   - zigbee2mqtt
   - node-red
