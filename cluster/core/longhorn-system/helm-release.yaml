@@ -38,6 +38,8 @@ spec:
       resizerReplicaCount: 1
       snapshotterReplicaCount: 1
     defaultSettings:
+      backupTarget: ${SECRET_SVC_LONGHORN_BACKUP_TARGET}
+      backupTargetCredentialSecret: longhorn-backup-secrets
       defaultReplicaCount: 2
       taintToleration: "node-role.kubernetes.io/master=true:NoSchedule"
     ingress:
