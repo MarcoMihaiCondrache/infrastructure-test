@@ -22,7 +22,7 @@ spec:
   values:
     image:
       repository: koenkk/zigbee2mqtt
-      tag: latest-dev ## using dev branch to add unsupported devices
+      tag: latest
       pullPolicy: IfNotPresent
     envFrom:
       - secretRef:
