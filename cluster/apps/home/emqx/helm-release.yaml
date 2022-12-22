@@ -16,6 +16,10 @@ spec:
   install:
     remediation:
       retries: 5
+  upgrade:
+    force: true
+    remediation:
+      retries: 3
   dependsOn:
     - name: longhorn
       namespace: longhorn-system
