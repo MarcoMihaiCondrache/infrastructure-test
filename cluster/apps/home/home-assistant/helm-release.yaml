@@ -15,6 +15,10 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
       interval: 5m
+  install:
+    remediation:
+      retries: 5
+    timeout: 50m
   dependsOn:
     - name: emqx
       namespace: home
