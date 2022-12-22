@@ -1,0 +1,19 @@
+---
+version: "3"
+
+tasks:
+
+  backup:
+    desc: Create a velero backup
+    cmds:
+      - velero backup create ${CLUSTER_NAME}-$(date +%s)
+
+  restore:
+    desc: Restore a velero backup
+    cmds:
+      - velero restore create --from-backup {{.CLI_ARGS}}
+
+  install:
+    desc: Installs the velero server
+    cmds:
+      - velero install --provider aws --image velero/velero:v1.10.0 --plugins velero/velero-plugin-for-aws:v1.5.2 --bucket ${SVC_VELERO_BUCKET_NAME} --secret-file ./.velero-secrets.ini --backup-location-config region=fra1 s3Url=https://fra1.digitaloceanspaces.com
