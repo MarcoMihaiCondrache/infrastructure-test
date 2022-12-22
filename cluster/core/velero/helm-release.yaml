@@ -29,7 +29,6 @@ spec:
         config:
           region: fra1
           s3Url: https://fra1.digitaloceanspaces.com
-      resticTimeout: 4h
     credentials:
       existingSecret: velero-s3-creds
     schedules:
@@ -55,7 +54,7 @@ spec:
       image:
         repository: docker.io/bitnami/kubectl
         tag: 1.25.5
-    deployRestic: false
+    deployNodeAgent: false
     resources:
       requests:
         memory: 300Mi
