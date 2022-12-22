@@ -9,5 +9,6 @@ resources:
   - node-feature-discovery.yaml
   - networking.yaml
   - longhorn-system.yaml
+  - velero.yaml
   - databases.yaml
   - home.yaml
