@@ -20,6 +20,12 @@ spec:
     - name: home-assistant
       namespace: home
   values:
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
     image:
       repository: ghcr.io/k8s-at-home/node-red
       tag: v3.0.2

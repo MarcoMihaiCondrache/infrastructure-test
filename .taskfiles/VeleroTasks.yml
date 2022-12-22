@@ -16,4 +16,10 @@ tasks:
   install:
     desc: Installs the velero server
     cmds:
-      - velero install --provider aws --image velero/velero:v1.10.0 --plugins velero/velero-plugin-for-aws:v1.5.2 --bucket ${SVC_VELERO_BUCKET_NAME} --secret-file ./.velero-secrets.ini --backup-location-config region=fra1 s3Url=https://fra1.digitaloceanspaces.com
+      - velero install --provider aws --image velero/velero:v1.10.0 --plugins velero/velero-plugin-for-aws:v1.5.2 --bucket ${SVC_VELERO_BUCKET_NAME} --secret-file ./.velero-secrets.ini --backup-location-config region=fra1,s3Url=https://fra1.digitaloceanspaces.com
+
+  uninstall:
+    desc: Uninstalls the velero server
+    cmds:
+      - kubectl delete namespace/velero clusterrolebinding/velero
+      - kubectl delete crds -l component=velero

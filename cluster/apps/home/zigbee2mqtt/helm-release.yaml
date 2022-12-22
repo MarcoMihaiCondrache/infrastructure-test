@@ -20,6 +20,12 @@ spec:
     - name: longhorn
       namespace: longhorn-system
   values:
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
     image:
       repository: koenkk/zigbee2mqtt
       tag: latest
