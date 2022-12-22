@@ -16,6 +16,9 @@ spec:
   install:
     remediation:
       retries: 5
+  dependsOn:
+    - name: longhorn
+      namespace: longhorn-system
   values:
     replicaCount: 3
     recreatePods: true
