@@ -51,6 +51,7 @@ tasks:
         tflint
         yamllint
         yq
+
   verify:
     desc: Verify env settings
     cmds:

@@ -18,3 +18,4 @@ packages:
   - python3-setuptools
   - python3-kubernetes
   - python3-yaml
+  - python3-netaddr
