@@ -22,3 +22,12 @@ k3s_etcd_datastore: true
 
 # (bool) Allow the use of unsupported configurations in k3s
 k3s_use_unsupported_config: true
+
+k3s_server_manifests_urls:
+  # Tigera Operator
+  # https://github.com/projectcalico/calico/issues/7003
+  - url: https://raw.githubusercontent.com/projectcalico/calico/v3.24.2/manifests/tigera-operator.yaml
+    filename: tigera-operator.yaml
+
+k3s_server_manifests_templates:
+  - calico-installation.yaml.j2

@@ -31,7 +31,7 @@ spec:
         loadBalancerIP: ${SVC_LONGHORN_LB_IP}
     persistence:
       defaultClass: true
-      defaultClassReplicaCount: 2
+      defaultClassReplicaCount: 1
     csi:
       attacherReplicaCount: 1
       provisionerReplicaCount: 1
@@ -40,24 +40,9 @@ spec:
     defaultSettings:
       backupTarget: ${SECRET_SVC_LONGHORN_BACKUP_TARGET}
       backupTargetCredentialSecret: longhorn-backup-secrets
-      defaultReplicaCount: 2
-      taintToleration: "node-role.kubernetes.io/master=true:NoSchedule"
+      defaultReplicaCount: 1
     ingress:
       enabled: false
-    longhornManager:
-      priorityClass: system-node-critical
-      tolerations:
-        - key: "node-role.kubernetes.io/master"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
-    longhornDriver:
-      priorityClass: system-node-critical
-      tolerations:
-        - key: "node-role.kubernetes.io/master"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
     resources:
       requests:
         cpu: "50m"
